@@ -6,12 +6,15 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:14 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 15:41:47 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:04:21 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Analizza una stringa RGB nel formato "R,G,B" e 
+restituisce una struttura t_color
+Ogni valore deve essere compreso tra 0 e 255, altrimenti genera un errore.*/
 t_color parse_color(char *str)
 {
 	t_color	color;

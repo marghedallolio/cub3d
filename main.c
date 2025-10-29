@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:32 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 15:20:36 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/10/29 15:57:05 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(t_game));
 	game.floor.r = -1;
 	game.ceiling.r = -1;
-	parse_file(argv[1], &game);
+	//parse_file(argv[1], &game);
 	return (0);
 }

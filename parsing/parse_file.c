@@ -6,12 +6,14 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:17 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 15:34:06 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:05:26 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Controlla che tutte le texture e i colori del pavimento e del soffitto
+siano stati definiti correttamente, altrimenti genera un errore*/
 static void	check_txtures_and_colors(t_game *game)
 {
 	if (!game->textures.north || !game->textures.south
@@ -21,6 +23,9 @@ static void	check_txtures_and_colors(t_game *game)
 		print_error("Missing floor or ceiling color");
 }
 
+/*Legge e analizza un file .cub linea per linea, popolando la struttura t_game
+Dopo il parsing verifica che texture e colori siano presenti e 
+chiama validate_map().*/
 int	parse_file(char *filename, t_game *game)
 {
 	int		fd;
@@ -36,6 +41,6 @@ int	parse_file(char *filename, t_game *game)
 	}
 	close(fd);
 	check_textures_and_colors(game);
-	validate_map(game); // da implementare
+	// validate_map(game); // da implementare
 	return(0);
 }

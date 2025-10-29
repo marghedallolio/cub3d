@@ -6,12 +6,15 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:21 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 15:41:51 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:06:33 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Estrae il percorso della texture da una linea del tipo 
+"NO ./path/to/texture.xpm"
+Restituisce una copia della stringa del percorso*/
 static char	*get_path(char *line)
 {
 	char	**split;
@@ -25,6 +28,9 @@ static char	*get_path(char *line)
 	return (path);
 }
 
+/*Analizza una singola linea del file .cub e 
+aggiorna i campi corrispondenti di t_game
+Riconosce texture, colori e inizio della mappa.*/
 void	parse_line(char *line, t_game *game)
 {
 	if (is_empty_line(line))

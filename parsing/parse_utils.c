@@ -6,12 +6,15 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:26 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 15:50:15 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:01:04 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Verifica se una linea e' vuota o composta solo da spazi, tab o newline
+Restituisce 0 se la linea contiene altri caratteri, 
+altrimenti restituisce la sua lunghezza*/
 int	is_empty_line(char *line)
 {
 	int	i;
