@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*Controlla che tutte le texture e i colori del pavimento e del soffitto
 siano stati definiti correttamente, altrimenti genera un errore*/
-static void	check_txtures_and_colors(t_game *game)
+static void	check_textures_and_colors(t_game *game)
 {
 	if (!game->textures.north || !game->textures.south
 		|| !game->textures.west || !game->textures.east)
@@ -34,13 +34,13 @@ int	parse_file(char *filename, t_game *game)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		print_error("Cannot open file");
-	while (line = get_next_line(fd))
+	while ((line = get_next_line(fd)))
 	{
 		parse_line(line, game);
 		free(line);
 	}
 	close(fd);
 	check_textures_and_colors(game);
-	// validate_map(game); // da implementare
+	validate_map(game);
 	return(0);
 }

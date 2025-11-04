@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*Analizza una stringa RGB nel formato "R,G,B" e 
 restituisce una struttura t_color

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*Verifica se una linea e' vuota o composta solo da spazi, tab o newline
 Restituisce 0 se la linea contiene altri caratteri, 

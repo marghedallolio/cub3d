@@ -64,6 +64,8 @@ int		parse_file(char *filename, t_game *game);
 void	parse_line(char *line, t_game *game);
 int		is_empty_line(char *line);
 void	free_split(char **split);
+void	validate_map(t_game *game);
+void	add_map_line(t_game *game, char *line);
 
 // ERRORS
 void	print_error(char *msg);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*Estrae il percorso della texture da una linea del tipo 
 "NO ./path/to/texture.xpm"

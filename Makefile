@@ -25,7 +25,7 @@ SRC = main.c
 PARSING_SRC = parse_color.c parse_file.c parse_line.c parse_map.c parse_utils.c
 
 OBJ = $(SRC:.c=.o)
-PARSING_OBJ = $(addprefix signals/, $(PARSING_SRC:.c=.o))
+PARSING_OBJ = $(addprefix parsing/, $(PARSING_SRC:.c=.o))
 
 ALL_OBJS = $(OBJ) $(PARSING_OBJ)
 

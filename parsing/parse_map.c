@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 /*Aggiunge una riga alla mappa del gioco, 
 allocando l’array grid se non ancora esistente

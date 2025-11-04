@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(t_game));
 	game.floor.r = -1;
 	game.ceiling.r = -1;
-	/* parse_file(argv[1], &game);
-	ft_printf("Parsing fatto"); */
+	parse_file(argv[1], &game);
+	ft_printf("Parsing fatto");
 	return (0);
 }
