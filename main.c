@@ -6,7 +6,11 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:32 by mdalloli          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/11/05 16:17:14 by francema         ###   ########.fr       */
+=======
+/*   Updated: 2025/11/05 16:43:39 by mdalloli         ###   ########.fr       */
+>>>>>>> 2ea483b4e32f234034d670e734802e5bbe33d723
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +164,13 @@ int	main(int argc, char **argv)
 	ft_bzero(&g, sizeof(t_game));
 	game.floor.r = -1;
 	game.ceiling.r = -1;
+<<<<<<< HEAD
 	parse_file(argv[1], &g);
+=======
+	ft_printf("Starting parse_file...\n");
+	parse_file(argv[1], &game);
+	ft_printf("Parsing fatto\n");
+>>>>>>> 2ea483b4e32f234034d670e734802e5bbe33d723
 	return (0);
 }
 

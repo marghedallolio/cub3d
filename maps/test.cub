@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./textures/Bici.xpm
+SO ./textures/grondaia.xpm
+WE ./textures/idrante.xpm
+EA ./textures/ventola.xpm
 F 220,100,0
 C 225,30,0
 
@@ -13,5 +13,5 @@ C 225,30,0
 1000000000110000011101
 1000000000000000000001
 1000000000000000000001
-1000000000000000000001
+1000000000000000N00001
 1111111111111111111111
