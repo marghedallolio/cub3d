@@ -21,7 +21,6 @@ $(GNL):
 $(STD_LIB):
 	make -C std_fun/
 
-
 $(NAME): $(STD_LIB) $(GNL) $(PRINTF)
 	rm -f $(NAME)
 	ar -x $(STD_LIB)

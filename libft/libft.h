@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 17:36:42 by francema          #+#    #+#             */
-/*   Updated: 2025/06/28 17:29:39 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/10/29 16:43:28 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 # include <limits.h>
 # include <fcntl.h>
 # include <stddef.h>
+# include <stdbool.h>
 # include <stdio.h>
+
+/*TRASH BIN FUNCTIONS*/
+void	*ft_malloc(size_t size, bool BIG_RED_BOTTON);
 
 /*STD FUNCTIONS START*/
 typedef struct s_list

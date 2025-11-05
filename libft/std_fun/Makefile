@@ -27,6 +27,7 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		ft_putstr.c ft_putchar.c ft_strcmp.c ft_ispace.c \
 		ft_ispace.c ft_matlen.c ft_word_len.c ft_skip_spaces.c \
 		ft_strlen_till_space.c ft_strjoin_free.c \
+		trash_bin/trash_bin.c
 
 OBJS	= $(SRCS:.c=.o)
 

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:23 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/30 15:01:31 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:43:05 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*Aggiunge una riga alla mappa del gioco, 
+/*Aggiunge una riga alla mappa del gioco,
 allocando l’array grid se non ancora esistente
-Ogni chiamata inserisce una nuova riga duplicata e 
+Ogni chiamata inserisce una nuova riga duplicata e
 incrementa l’altezza della mappa*/
 void	add_map_line(t_game *game, char *line)
 {
@@ -29,14 +29,14 @@ void	add_map_line(t_game *game, char *line)
 	game->map.height++;
 }
 
-/*Restituisce 1 se il carattere rappresenta una 
+/*Restituisce 1 se il carattere rappresenta una
 direzione del giocatore (N, S, E o W), altrimenti restituisce 0.*/
 static int	is_player_char(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-/*Cerca la posizione iniziale del giocatore nella mappa e 
+/*Cerca la posizione iniziale del giocatore nella mappa e
 la salva nella struttura t_game
 Genera un errore se non viene trovata o se ce ne sono più di una.*/
 static void	find_player(t_game *game)
@@ -56,9 +56,9 @@ static void	find_player(t_game *game)
 				if (found)
 					print_error("Multiple player positions");
 				found = 1;
-				game->player.x = x + 0.5;
-				game->player.y = y + 0.5;
-				game->player.dir = game->map.grid[y][x];
+				game->player.pos_x = x + 0.5;
+				game->player.pos_y = y + 0.5;
+				init_player_direction(&game->player, game->map.grid[y][x]);
 			}
 		}
 	}
@@ -96,7 +96,7 @@ static void	check_closed(t_game *game)
 	}
 }
 
-/*Valida la mappa completa assicurandosi che ci sia un giocatore e 
+/*Valida la mappa completa assicurandosi che ci sia un giocatore e
 che sia chiusa da muri*/
 void	validate_map(t_game *game)
 {
