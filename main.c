@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:32 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/30 14:58:01 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:43:39 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 	ft_bzero(&game, sizeof(t_game));
 	game.floor.r = -1;
 	game.ceiling.r = -1;
+	ft_printf("Starting parse_file...\n");
 	parse_file(argv[1], &game);
-	ft_printf("Parsing fatto");
+	ft_printf("Parsing fatto\n");
 	return (0);
 }
