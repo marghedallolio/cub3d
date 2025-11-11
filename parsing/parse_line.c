@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:21 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 16:06:33 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:48:01 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cube3d.h"
 
-/*Estrae il percorso della texture da una linea del tipo 
+/*Estrae il percorso della texture da una linea del tipo
 "NO ./path/to/texture.xpm"
 Restituisce una copia della stringa del percorso*/
 static char	*get_path(char *line)
@@ -28,7 +28,7 @@ static char	*get_path(char *line)
 	return (path);
 }
 
-/*Analizza una singola linea del file .cub e 
+/*Analizza una singola linea del file .cub e
 aggiorna i campi corrispondenti di t_game
 Riconosce texture, colori e inizio della mappa.*/
 void	parse_line(char *line, t_game *game)

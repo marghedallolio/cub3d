@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cube3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/05 16:19:06 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:47:13 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUBE3D_H
+# define CUBE3D_H
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
 # include "libft/libft.h"
+# include "mlx/mlx.h"
+#define SCREEN_W 800
+#define SCREEN_H 600
+#define MAP_W 24
+#define MAP_H 6
 
 typedef struct s_color
 {
@@ -52,7 +57,7 @@ typedef struct s_mlx
 	int		endian;
 	int		img_w;
 	int		img_h;
-} t_mlx;
+}	t_mlx;
 
 typedef struct s_player
 {
@@ -87,8 +92,8 @@ typedef struct s_game
 	t_color		floor;
 	t_color		ceiling;
 	t_map		map;
-	t_mlx		libx;
-	t_player	player;
+	t_mlx		*libx;
+	t_player	*p1;
 	int			map_started;
 }	t_game;
 
@@ -100,6 +105,9 @@ int		is_empty_line(char *line);
 void	free_split(char **split);
 void	validate_map(t_game *game);
 void	add_map_line(t_game *game, char *line);
+
+// RENDERING
+bool	render_game(t_game *g);
 
 // ERRORS
 void	print_error(char *msg);

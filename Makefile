@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+         #
+#    By: francema <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 14:09:53 by mdalloli          #+#    #+#              #
-#    Updated: 2025/11/05 16:37:13 by mdalloli         ###   ########.fr        #
+#    Updated: 2025/11/11 11:58:36 by francema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .SILENT:
 
-NAME = cub3d
+NAME = cube3d
 LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
 DIR_MLX = mlx/
@@ -22,11 +22,12 @@ CFLAGS = -Werror -Wextra -Wall -g
 MLXFLAGS = -Lmlx -lXext -lm -lmlx -lX11
 
 SRC = main.c errors.c
-PARSING_SRC = parsing/parse_color.c parsing/parse_file.c parsing/parse_line.c \
-			parsing/parse_map.c parsing/parse_utils.c
+PARSING_SRC = parsing/parse_color.c parsing/parse_file.c parsing/parse_line.c parsing/parse_map.c parsing/parse_utils.c
+RENDERING_SRC = rendering/render_game.c rendering/render_line.c
+RAYCASTING_SRC = raycasting/raycasting_utils.c raycasting/raycasting.c
 
 
-SRC_ALL = $(SRC) $(PARSING_SRC)
+SRC_ALL = $(SRC) $(PARSING_SRC) $(RENDERING_SRC) $(RAYCASTING_SRC)
 OBJ = $(SRC_ALL:.c=.o)
 
 all: $(NAME)

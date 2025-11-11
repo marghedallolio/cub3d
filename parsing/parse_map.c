@@ -6,11 +6,11 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:23 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/05 17:45:57 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:48:01 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cube3d.h"
 
 /*Aggiunge una riga alla mappa del gioco,
 allocando l’array grid se non ancora esistente
@@ -18,28 +18,28 @@ Ogni chiamata inserisce una nuova riga duplicata e
 incrementa l’altezza della mappa*/
 void add_map_line(t_game *game, char *line)
 {
-    static int i = 0;
+	static int i = 0;
 
-    if (!line)
-        return;
+	if (!line)
+		return;
 
-    if (!game->map.grid)
-    {
-        game->map.grid = ft_calloc(1000, sizeof(char *));
-        if (!game->map.grid)
-            print_error("Memory allocation failed");
-        game->map.height = 0;
-        i = 0; // Reset the counter when allocating new grid
-    }
+	if (!game->map.grid)
+	{
+		game->map.grid = ft_calloc(1000, sizeof(char *));
+		if (!game->map.grid)
+			print_error("Memory allocation failed");
+		game->map.height = 0;
+		i = 0; // Reset the counter when allocating new grid
+	}
 
-    if (i >= 1000)
-        print_error("Map too large");
+	if (i >= 1000)
+		print_error("Map too large");
 
-    game->map.grid[i] = ft_strdup(line);
-    if (!game->map.grid[i])
-        print_error("Memory allocation failed");
-    i++;
-    game->map.height++;
+	game->map.grid[i] = ft_strdup(line);
+	if (!game->map.grid[i])
+		print_error("Memory allocation failed");
+	i++;
+	game->map.height++;
 }
 
 /*Restituisce 1 se il carattere rappresenta una
@@ -69,9 +69,9 @@ static void	find_player(t_game *game)
 				if (found)
 					print_error("Multiple player positions");
 				found = 1;
-				game->player.pos_x = x + 0.5;
-				game->player.pos_y = y + 0.5;
-				init_player_direction(&game->player, game->map.grid[y][x]);
+				game->p1->pos_x = x + 0.5;
+				game->p1->pos_y = y + 0.5;
+				init_player_direction(&game->p1, game->map.grid[y][x]);
 			}
 		}
 	}
@@ -83,41 +83,41 @@ static void	find_player(t_game *game)
 Se trova spazi aperti vicino a celle percorribili o al giocatore, genera un errore*/
 static void check_closed(t_game *game)
 {
-    int y;
-    int x;
-    size_t len;
+	int y;
+	int x;
+	size_t len;
 
-    y = 0;
-    while (y < game->map.height)
-    {
-        if (!game->map.grid[y])
-            print_error("Invalid map line");
+	y = 0;
+	while (y < game->map.height)
+	{
+		if (!game->map.grid[y])
+			print_error("Invalid map line");
 
-        len = ft_strlen(game->map.grid[y]);
-        x = 0;
-        while (game->map.grid[y][x])
-        {
-            char c = game->map.grid[y][x];
-            if (c == '0' || is_player_char(c))
-            {
-                // Check if we're at map boundaries
-                if (y == 0 || x == 0 || y == game->map.height - 1 || x == (int)len - 1)
-                    print_error("Map not closed by walls");
+		len = ft_strlen(game->map.grid[y]);
+		x = 0;
+		while (game->map.grid[y][x])
+		{
+			char c = game->map.grid[y][x];
+			if (c == '0' || is_player_char(c))
+			{
+				// Check if we're at map boundaries
+				if (y == 0 || x == 0 || y == game->map.height - 1 || x == (int)len - 1)
+					print_error("Map not closed by walls");
 
-                // Check if adjacent cells exist and are valid
-                if (!game->map.grid[y - 1] || !game->map.grid[y + 1] ||
-                    x >= (int)ft_strlen(game->map.grid[y - 1]) ||
-                    x >= (int)ft_strlen(game->map.grid[y + 1]) ||
-                    game->map.grid[y - 1][x] == ' ' ||
-                    game->map.grid[y][x - 1] == ' ' ||
-                    game->map.grid[y][x + 1] == ' ' ||
-                    game->map.grid[y + 1][x] == ' ')
-                    print_error("Map not closed by walls");
-            }
-            x++;
-        }
-        y++;
-    }
+				// Check if adjacent cells exist and are valid
+				if (!game->map.grid[y - 1] || !game->map.grid[y + 1] ||
+					x >= (int)ft_strlen(game->map.grid[y - 1]) ||
+					x >= (int)ft_strlen(game->map.grid[y + 1]) ||
+					game->map.grid[y - 1][x] == ' ' ||
+					game->map.grid[y][x - 1] == ' ' ||
+					game->map.grid[y][x + 1] == ' ' ||
+					game->map.grid[y + 1][x] == ' ')
+					print_error("Map not closed by walls");
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 /*Valida la mappa completa assicurandosi che ci sia un giocatore e

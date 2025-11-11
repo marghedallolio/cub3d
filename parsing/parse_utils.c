@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:26 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 16:01:04 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:48:01 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cube3d.h"
 
 /*Verifica se una linea e' vuota o composta solo da spazi, tab o newline
-Restituisce 0 se la linea contiene altri caratteri, 
+Restituisce 0 se la linea contiene altri caratteri,
 altrimenti restituisce la sua lunghezza*/
 int	is_empty_line(char *line)
 {
@@ -30,12 +30,12 @@ int	is_empty_line(char *line)
 }
 
 /*Libera un array di stringhe terminato da NULL
-Ogni stringa viene liberata singolarmente, 
+Ogni stringa viene liberata singolarmente,
 poi viene liberato anche libera anche l'array principale*/
 void	free_split(char **split)
 {
 	int i;
-	
+
 	if (!split)
 		return ;
 	i = 0;

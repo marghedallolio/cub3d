@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:14 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/10/29 16:04:21 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:48:01 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cube3d.h"
 
-/*Analizza una stringa RGB nel formato "R,G,B" e 
+/*Analizza una stringa RGB nel formato "R,G,B" e
 restituisce una struttura t_color
 Ogni valore deve essere compreso tra 0 e 255, altrimenti genera un errore.*/
 t_color parse_color(char *str)
 {
 	t_color	color;
 	char	**split;
-	
+
 	split = ft_split(str, ',');
 	if (!split || !split[0] || !split[1] || !split[2])
 		print_error("Invalid color format");

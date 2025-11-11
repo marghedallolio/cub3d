@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:17 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/05 16:39:55 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/06 14:59:48 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../cube3d.h"
 
 /*Controlla che tutte le texture e i colori del pavimento e del soffitto
 siano stati definiti correttamente, altrimenti genera un errore*/
@@ -24,7 +24,7 @@ static void	check_textures_and_colors(t_game *game)
 }
 
 /*Legge e analizza un file .cub linea per linea, popolando la struttura t_game
-Dopo il parsing verifica che texture e colori siano presenti e 
+Dopo il parsing verifica che texture e colori siano presenti e
 chiama validate_map().*/
 int	parse_file(char *filename, t_game *game)
 {
@@ -36,14 +36,14 @@ int	parse_file(char *filename, t_game *game)
 		print_error("Cannot open file");
 	while ((line = get_next_line(fd)) != NULL)
 	{
-        if (line && (line[0] == '\0' || line[0] == '\n'))
-        {
-            free(line);
-            continue;
-        }
-        if (line)
-            parse_line(line, game);
-        free(line);
+		if (line && (line[0] == '\0' || line[0] == '\n'))
+		{
+			free(line);
+			continue;
+		}
+		if (line)
+			parse_line(line, game);
+		free(line);
 	}
 	close(fd);
 	check_textures_and_colors(game);
