@@ -12,6 +12,38 @@
 
 #include "../cube3d.h"
 
+/*Imposta la direzione del player (dir_x, dir_y) 
+in base al carattere trovato nella mappa e imposta il vettore camera 
+(plane_x, plane_y) per il raycasting*/
+void	init_player_direction(t_player **p, char c)
+{
+	(*p)->dir_x = 0;
+	(*p)->dir_y = 0;
+	(*p)->plane_x = 0;
+	(*p)->plane_y = 0;
+
+	if (c == 'N')
+	{
+		(*p)->dir_y = -1;
+		(*p)->plane_x = 0.66;
+	}
+	else if (c == 'S')
+	{
+		(*p)->dir_y = 1;
+		(*p)->plane_x = -0.66;
+	}
+	else if (c == 'E')
+	{
+		(*p)->dir_x = 1;
+		(*p)->plane_y = 0.66;
+	}
+	else if (c == 'W')
+	{
+		(*p)->dir_x = -1;
+		(*p)->plane_y = -0.66;
+	}
+}
+
 /*Aggiunge una riga alla mappa del gioco,
 allocando l’array grid se non ancora esistente
 Ogni chiamata inserisce una nuova riga duplicata e
