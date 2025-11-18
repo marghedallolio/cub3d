@@ -106,6 +106,11 @@ void	free_split(char **split);
 void	validate_map(t_game *game);
 void	add_map_line(t_game *game, char *line);
 
+// RAYCASTING
+void	raycast(t_game *game);
+void	compute_wall_distance(t_ray *ray, t_player *p);
+void	draw_vertical_line(t_game *game, t_ray *ray, int x);
+
 // RENDERING
 bool	render_game(t_game *g);
 

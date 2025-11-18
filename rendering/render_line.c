@@ -6,11 +6,28 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:22:15 by francema          #+#    #+#             */
-/*   Updated: 2025/11/11 11:22:56 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/18 16:41:36 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
+
+void	put_line_to_img(t_mlx *libx, int x, int start, int end, int color)
+{
+	int		y;
+	char	*pixel;
+
+	y = start;
+	while (y <= end)
+	{
+		pixel = libx->addr
+			+ (y * libx->l_l)
+			+ (x * (libx->bpp / 8));
+
+		*(unsigned int *)pixel = color;
+		y++;
+	}
+}
 
 void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 {
@@ -27,5 +44,5 @@ void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 	if (end >= SCREEN_H)
 		end = SCREEN_H - 1;
 	color = (ray->side == 1) ? 0xAAAAAA : 0xFFFFFF;
-	put_line_to_img(game->libx, x, start, end, color); //mancante
+	put_line_to_img(game->libx, x, start, end, color);
 }
