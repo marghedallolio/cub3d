@@ -27,5 +27,5 @@ void	draw_vertical_line(t_game *game, t_ray *ray, int x)
 	if (end >= SCREEN_H)
 		end = SCREEN_H - 1;
 	color = (ray->side == 1) ? 0xAAAAAA : 0xFFFFFF;
-	put_line_to_img(game->libx, x, start, end, color);
+	put_line_to_img(game->libx, x, start, end, color); //mancante
 }
