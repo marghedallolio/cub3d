@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/11/19 15:15:41 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:59:49 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	main(int argc, char **argv)
 		return (STDERR_FILENO);
 	if (!render_game(&g))
 		return (STDERR_FILENO);
-	mlx_hook(g.libx->win_ptr, 17, 0, close_window, NULL);
-	mlx_loop_hook(g.libx->mlx_ptr, raycast, &g);
-	mlx_loop(g.libx->mlx_ptr);
+	mlx_hook(g.win_ptr, 17, 0, close_window, NULL);
+	mlx_loop_hook(g.mlx_ptr, raycast, &g);
+	mlx_loop(g.mlx_ptr);
 	ft_bzero(&g, sizeof(t_game));
 	ft_malloc(0, 1);
 	return (EXIT_SUCCESS);
