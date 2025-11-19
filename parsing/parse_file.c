@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:17 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/19 14:55:31 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:11:00 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	parse_file(char *filename, t_game *game)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
+	
 		print_error("Cannot open file");
 	while ((line = get_next_line(fd)) != NULL)
 	{

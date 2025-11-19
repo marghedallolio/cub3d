@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:23 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/19 14:55:38 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:27:59 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ incrementa l’altezza della mappa*/
 void add_map_line(t_game *game, char *line)
 {
 	static int i = 0;
+	int len;
 
 	if (!line)
 		return;
-
 	if (!game->map.grid)
 	{
 		game->map.grid = ft_calloc(1000, sizeof(char *));
@@ -63,15 +63,16 @@ void add_map_line(t_game *game, char *line)
 		game->map.height = 0;
 		i = 0; // Reset the counter when allocating new grid
 	}
-
 	if (i >= 1000)
 		print_error("Map too large");
-
 	game->map.grid[i] = ft_strdup(line);
 	if (!game->map.grid[i])
 		print_error("Memory allocation failed");
 	i++;
 	game->map.height++;
+	len = ft_strlen(line);
+	if (len > game->map.width)
+		game->map.width = len;
 }
 
 /*Restituisce 1 se il carattere rappresenta una
