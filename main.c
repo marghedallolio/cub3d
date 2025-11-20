@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/11/11 12:31:47 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:39:06 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ bool	init_game(t_game *g, char *av)
 	t_mlx		*libx;
 	t_player	*p1;
 
+	parse_file(av, g);
 	libx = (t_mlx *)ft_malloc(sizeof(t_mlx) * 1, 0);
 	if (!libx)
 		return (false);
@@ -67,7 +68,6 @@ bool	init_game(t_game *g, char *av)
 	if (!init_player(p1) || !init_libx(libx))
 		return (false);
 	ft_printf("Starting parse_file...\n");
-	parse_file(av, g);
 	ft_printf("Parsing fatto\n");
 	return (true);
 }
