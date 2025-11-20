@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:39:19 by francema          #+#    #+#             */
-/*   Updated: 2025/05/14 17:32:15 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:14:25 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	str = malloc(len1 + len2 + 1);
+	str = ft_malloc(len1 + len2 + 1, 0);
 	if (!str)
 		return (NULL);
 	i = -1;

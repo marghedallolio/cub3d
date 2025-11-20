@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:39:28 by francema          #+#    #+#             */
-/*   Updated: 2025/04/29 18:27:14 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:16:40 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ char	*extract_line(char **buffer)
 	if (!(*buffer)[i])
 	{
 		line = ft_strdup(*buffer);
-		free(*buffer);
+	//	free(*buffer);
 		*buffer = NULL;
 		return (line);
 	}
 	line = ft_substr(*buffer, 0, i + 1);
 	new_buf = ft_strdup(*buffer + i + 1);
-	free(*buffer);
+	//free(*buffer);
 	*buffer = new_buf;
 	if (!(*buffer))
-		return (free(line), NULL);
+		return (NULL);
 	return (line);
 }
 
@@ -50,12 +50,12 @@ char	*get_lines(int fd, char *buffer)
 	{
 		b_read = read(fd, tmp_buf, BUFFER_SIZE);
 		if (b_read < 0)
-			return (free(buffer), NULL);
+			return (NULL);
 		tmp_buf[b_read] = '\0';
 		tmp = ft_strjoin_gnl(buffer, tmp_buf);
 		if (!tmp)
-			return (free(buffer), NULL);
-		free(buffer);
+			return (NULL);
+		// free(buffer);
 		buffer = tmp;
 	}
 	return (buffer);
@@ -70,7 +70,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buffer[fd] = get_lines(fd, buffer[fd]);
 	if (!buffer[fd] || !*buffer[fd])
-		return (free(buffer[fd]), NULL);
+		return (NULL);
 	line = extract_line(&buffer[fd]);
 	return (line);
 }

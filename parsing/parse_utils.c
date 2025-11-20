@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:26 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/19 14:55:41 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:07:45 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Ogni stringa viene liberata singolarmente,
 poi viene liberato anche libera anche l'array principale*/
 void	free_split(char **split)
 {
-	int i;
+	int	i;
 
 	if (!split)
 		return ;

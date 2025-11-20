@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:22:15 by francema          #+#    #+#             */
-/*   Updated: 2025/11/18 16:41:36 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/19 16:26:40 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,19 @@ void	put_line_to_img(t_mlx *libx, int x, int start, int end, int color)
 	int		y;
 	char	*pixel;
 
+	// Clamping per evitare scritture fuori immagine
+	if (x < 0 || x >= SCREEN_W)
+		return;
+	if (start < 0)
+		start = 0;
+	if (end >= SCREEN_H)
+		end = SCREEN_H - 1;
 	y = start;
 	while (y <= end)
 	{
 		pixel = libx->addr
 			+ (y * libx->l_l)
 			+ (x * (libx->bpp / 8));
-
 		*(unsigned int *)pixel = color;
 		y++;
 	}

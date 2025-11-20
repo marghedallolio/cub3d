@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: francema <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 14:09:53 by mdalloli          #+#    #+#              #
-#    Updated: 2025/11/11 11:58:36 by francema         ###   ########.fr        #
+#    Updated: 2025/11/19 15:17:19 by mdalloli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = cc
 CFLAGS = -Werror -Wextra -Wall -g
 MLXFLAGS = -Lmlx -lXext -lm -lmlx -lX11
 
-SRC = main.c errors.c
+SRC = main.c errors.c init.c
 PARSING_SRC = parsing/parse_color.c parsing/parse_file.c parsing/parse_line.c parsing/parse_map.c parsing/parse_utils.c
 RENDERING_SRC = rendering/render_game.c rendering/render_line.c
 RAYCASTING_SRC = raycasting/raycasting_utils.c raycasting/raycasting.c

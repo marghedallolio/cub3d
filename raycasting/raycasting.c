@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:03:34 by francema          #+#    #+#             */
-/*   Updated: 2025/11/18 16:49:54 by francema         ###   ########.fr       */
+/*   Updated: 2025/11/19 15:09:44 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-void	init_ray(t_ray *ray, t_player *p, int x)
+static void	init_ray(t_ray *ray, t_player *p, int x)
 {
 	double camera_x;
 
@@ -65,7 +65,7 @@ limiti della mappa. Alla fine imposta:
 - ray->hit = 1  (muro trovato)
 - ray->side = 0 (impatto su lato verticale)
 - ray->side = 1 (impatto su lato orizzontale)*/
-void	perform_dda(t_ray *ray, t_map *map)
+static void	perform_dda(t_ray *ray, t_map *map)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -96,7 +96,7 @@ void	perform_dda(t_ray *ray, t_map *map)
 	}
 }
 
-void	raycast(t_game *game)
+int	raycast(t_game *game)
 {
 	int		x;
 	t_ray	ray;
@@ -110,4 +110,5 @@ void	raycast(t_game *game)
 		draw_vertical_line(game, &ray, x);
 		x++;
 	}
+	return (0);
 }
