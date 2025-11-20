@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:17 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/20 15:15:46 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:19:47 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	parse_file(char *filename, t_game *game)
 	{
 		if (line[0] != '\n' && line[0] != '\0')
 			parse_line(line, game);
-		free(line);
+//		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	check_textures_and_colors(game);
 	validate_map(game);
-	return (0);
+	return (1);
 }

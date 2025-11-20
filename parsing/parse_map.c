@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:23 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/20 15:39:02 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 17:57:31 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ Ogni chiamata inserisce una nuova riga duplicata e
 incrementa l’altezza della mappa*/
 void	add_map_line(t_game *game, char *line)
 {
-	static int	i;
-	int			len;
+	int	i;
+	int	len;
 
 	i = 0;
 	if (!line)
@@ -30,8 +30,8 @@ void	add_map_line(t_game *game, char *line)
 		if (!game->map.grid)
 			print_error("Memory allocation failed");
 		game->map.height = 0;
-		i = 0;
 	}
+	i = game->map.height;
 	if (i >= 1000)
 		print_error("Map too large");
 	game->map.grid[i] = ft_strdup(line);

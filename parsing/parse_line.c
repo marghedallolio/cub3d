@@ -6,27 +6,87 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:21 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/20 15:03:55 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:03:33 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
+static char *trim_path(char *str)
+{
+    char *start;
+    char *end;
+    char *res;
+    size_t len;
+
+    if (!str)
+        return NULL;
+
+    // Skippa spazi iniziali
+    start = str;
+    while (*start && (*start == ' ' || *start == '\t'))
+        start++;
+
+    // Trova fine
+    end = start + ft_strlen(start);
+    while (end > start && (*(end - 1) == ' ' || *(end - 1) == '\t' || *(end - 1) == '\n'))
+        end--;
+
+    len = end - start;
+    res = ft_substr(start, 0, len); // alloca nuova stringa
+    return res;
+}
+
+
 /*Estrae il percorso della texture da una linea del tipo
 "NO ./path/to/texture.xpm"
 Restituisce una copia della stringa del percorso*/
-static char	*get_path(char *line)
+char *get_path(char *line)
 {
-	char	**split;
-	char	*path;
+    char **split;
+    char *path;
 
-	split = ft_split(line, ' ');
-	if (!split || !split[1])
-		print_error("Invalid texture path");
-	path = ft_strdup(split[1]);
-	free_split(split);
-	return (path);
+    split = ft_split(line, ' ');
+    if (!split || !split[1])
+        print_error("Invalid texture path");
+
+    path = trim_path(split[1]); // ora path è allocato e sicuro
+    free_split(split);
+    if (!path || !*path)
+        print_error("Invalid texture path");
+    return path;
 }
+/* char *get_path(char *line)
+{
+    char **split;
+    char *path;
+    int i;
+
+    split = ft_split(line, ' ');
+    if (!split || !split[1])
+        print_error("Invalid texture path");
+
+    path = trim_path(split[1]); // ora path è allocato e sicuro
+    free_split(split);
+
+    if (!path || !*path)
+        print_error("Invalid texture path");
+
+    // Stampa il percorso normale
+    printf("Path: '%s'\n", path);
+
+    // Stampa ogni carattere in esadecimale
+    printf("Hex dump: ");
+    i = 0;
+    while (path[i])
+    {
+        printf("%02x ", (unsigned char)path[i]);
+        i++;
+    }
+    printf("\n");
+
+    return path;
+} */
 
 static void	check_xpm_extension(char *path)
 {
@@ -44,9 +104,17 @@ static t_img	*load_texture(void *mlx_ptr, char *path)
 	t_img	*tex;
 
 	check_xpm_extension(path);
-	tex = malloc(sizeof(t_img));
+	tex = ft_malloc(sizeof(t_img), 0);
 	if (!tex)
 		print_error("Failed to allocate texture");
+	printf("%s\n", path);
+	if(open(path, O_RDONLY) < 0)
+		print_error("Failed to open XPM texture");
+	else
+		printf("opened\n");
+	tex->img_w = 0;
+	tex->img_h = 0;
+	printf("%p %d %d \n", mlx_ptr, tex->img_w, tex->img_h);
 	tex->img = mlx_xpm_file_to_image(mlx_ptr, path, &tex->img_w, &tex->img_h);
 	if (!tex->img)
 		print_error("Failed to load XPM texture");

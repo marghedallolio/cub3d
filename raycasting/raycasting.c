@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:03:34 by francema          #+#    #+#             */
-/*   Updated: 2025/11/19 15:09:44 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:33:09 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,22 @@ static void	perform_dda(t_ray *ray, t_map *map)
 	}
 }
 
-int	raycast(t_game *game)
+int raycast(t_game *g)
 {
-	int		x;
-	t_ray	ray;
+    int x;
 
-	x = 0;
-	while (x < SCREEN_W)
-	{
-		init_ray(&ray, game->p1, x);
-		perform_dda(&ray, &game->map);
-		compute_wall_distance(&ray, game->p1);
-		draw_vertical_line(game, &ray, x);
-		x++;
-	}
-	return (0);
+    // per ogni colonna dello schermo
+    for (x = 0; x < SCREEN_W; x++)
+    {
+        t_ray ray;
+        init_ray(&ray, g->p1, x);       // calcola la direzione del raggio
+        perform_dda(&ray, &g->map);       // trova il muro
+        draw_vertical_line(g, &ray, x); // scrive pixel in g->frame.img
+    }
+
+    // aggiorna la finestra ad ogni frame
+    mlx_put_image_to_window(g->mlx_ptr, g->win_ptr, g->frame.img, 0, 0);
+
+    return (0);
 }
+

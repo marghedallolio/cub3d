@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/20 15:42:09 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 18:29:32 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_game
 	t_color		ceiling;
 	t_map		map;
 	t_player	*p1;
+	t_img		frame;
 	int			map_started;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -117,10 +118,10 @@ bool	init_map(t_map *m);
 // RAYCASTING
 int		raycast(t_game *game);
 void	compute_wall_distance(t_ray *ray, t_player *p);
-void	draw_vertical_line(t_game *game, t_ray *ray, int x);
 
 // RENDERING
-bool	render_game(t_game *g);
+/* bool	render_game(t_game *g); */
+void	draw_vertical_line(t_game *g, t_ray *ray, int x);
 
 // ERRORS
 void	print_error(char *msg);
