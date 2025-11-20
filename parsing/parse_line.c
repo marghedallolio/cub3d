@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:21 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/19 17:10:21 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:03:55 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static t_img	*load_texture(void *mlx_ptr, char *path)
 	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->l_l, &tex->endian);
 	return (tex);
 }
-
 
 /*Analizza una singola linea del file .cub e
 aggiorna i campi corrispondenti di t_game

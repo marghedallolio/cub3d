@@ -6,18 +6,18 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/11/19 16:59:49 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:47:06 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	close_window()
+int	close_window(void)
 {
 	printf("finestra chiusa!\n");
 	ft_malloc(0, 1);
 	exit(0);
-	return 0;
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -38,4 +38,3 @@ int	main(int argc, char **argv)
 	ft_malloc(0, 1);
 	return (EXIT_SUCCESS);
 }
-

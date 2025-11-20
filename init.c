@@ -6,14 +6,14 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:15:43 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/19 17:03:28 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:45:46 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-
-bool init_map(t_map *m)
+/*init della mappa*/
+bool	init_map(t_map *m)
 {
 	if (!m)
 		return (false);
@@ -23,6 +23,7 @@ bool init_map(t_map *m)
 	return (true);
 }
 
+/*init del player*/
 bool	init_player(t_player *p)
 {
 	if (!p)
@@ -32,10 +33,12 @@ bool	init_player(t_player *p)
 	p->dir_x = -1;
 	p->dir_y = 0;
 	p->plane_x = 0;
-	p->plane_y = 0.66; // FOV ~66°
+	p->plane_y = 0.66;
 	return (true);
 }
 
+/* Inizializza la libreria MiniLibX e crea la finestra di gioco
+Ritorna false se l’inizializzazione fallisce. */
 bool	init_libx(t_game *g)
 {
 	g->mlx_ptr = mlx_init();
@@ -54,7 +57,8 @@ bool	init_libx(t_game *g)
 	return (true);
 }
 
-
+/* Inizializza tutte le componenti del gioco: player, mappa, parsing e MiniLibX.
+Restituisce false in caso di errore durante l’inizializzazione. */
 bool	init_game(t_game *g, char *av)
 {
 	//t_mlx		*g_libx;
