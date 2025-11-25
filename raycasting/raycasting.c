@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:03:34 by francema          #+#    #+#             */
-/*   Updated: 2025/11/20 18:33:09 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:27:38 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ limiti della mappa. Alla fine imposta:
 - ray->hit = 1  (muro trovato)
 - ray->side = 0 (impatto su lato verticale)
 - ray->side = 1 (impatto su lato orizzontale)*/
-static void	perform_dda(t_ray *ray, t_map *map)
+static void	perform_dda(t_ray *ray, t_map *map, t_player *p)
 {
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -92,7 +92,11 @@ static void	perform_dda(t_ray *ray, t_map *map)
 		}
 		// Se trovi un muro, ferma il DDA
 		if (map->grid[ray->map_y][ray->map_x] == '1')
+		{
 			ray->hit = 1;
+			compute_wall_distance(ray, p);
+		}
+			
 	}
 }
 
@@ -105,13 +109,12 @@ int raycast(t_game *g)
     {
         t_ray ray;
         init_ray(&ray, g->p1, x);       // calcola la direzione del raggio
-        perform_dda(&ray, &g->map);       // trova il muro
+        perform_dda(&ray, &g->map, g->p1);       // trova il muro
         draw_vertical_line(g, &ray, x); // scrive pixel in g->frame.img
     }
 
     // aggiorna la finestra ad ogni frame
     mlx_put_image_to_window(g->mlx_ptr, g->win_ptr, g->frame.img, 0, 0);
-
     return (0);
 }
 

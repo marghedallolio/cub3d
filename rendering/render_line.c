@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 11:22:15 by francema          #+#    #+#             */
-/*   Updated: 2025/11/20 16:25:10 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:28:49 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ static void put_line_to_img(t_game *g, t_ray *ray, int x, int start, int end)
 
     step = 1.0 * tex->img_h / (end - start);
     tex_pos = (start - SCREEN_H / 2 + (end - start) / 2) * step;
-
     y = start;
     while (y < end)
     {
         tex_y = (int)tex_pos & (tex->img_h - 1);
         tex_pos += step;
-
         src = tex->addr + tex_y * tex->l_l + tex_x * (tex->bpp / 8);
         dst = g->frame.addr + y * g->frame.l_l + x * (g->frame.bpp / 8);
 

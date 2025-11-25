@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:21 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/20 18:03:33 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:29:26 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,12 @@ static t_img	*load_texture(void *mlx_ptr, char *path)
 	tex = ft_malloc(sizeof(t_img), 0);
 	if (!tex)
 		print_error("Failed to allocate texture");
-	printf("%s\n", path);
 	if(open(path, O_RDONLY) < 0)
 		print_error("Failed to open XPM texture");
 	else
 		printf("opened\n");
-	tex->img_w = 0;
-	tex->img_h = 0;
-	printf("%p %d %d \n", mlx_ptr, tex->img_w, tex->img_h);
+	tex->img_w = 64;
+	tex->img_h = 64;
 	tex->img = mlx_xpm_file_to_image(mlx_ptr, path, &tex->img_w, &tex->img_h);
 	if (!tex->img)
 		print_error("Failed to load XPM texture");
