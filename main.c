@@ -6,25 +6,37 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/11/20 18:27:18 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/25 14:35:42 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int	close_window(t_game *game)
+int	close_window(t_game *g)
 {
-	mlx_destroy_image(game->mlx_ptr, game->frame.img);
-    mlx_destroy_image(game->mlx_ptr, game->textures.north);
-    mlx_destroy_image(game->mlx_ptr, game->textures.south);
-    mlx_destroy_image(game->mlx_ptr, game->textures.west);
-    mlx_destroy_image(game->mlx_ptr, game->textures.east);
-    mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	printf("finestra chiusa!\n");
-	ft_malloc(0, 1);
+	if (g->textures.north && g->textures.north->img)
+		mlx_destroy_image(g->mlx_ptr, g->textures.north->img);
+	if (g->textures.south && g->textures.south->img)
+		mlx_destroy_image(g->mlx_ptr, g->textures.south->img);
+	if (g->textures.west && g->textures.west->img)
+		mlx_destroy_image(g->mlx_ptr, g->textures.west->img);
+	if (g->textures.east && g->textures.east->img)
+		mlx_destroy_image(g->mlx_ptr, g->textures.east->img);
+
+	if (g->frame.img)
+		mlx_destroy_image(g->mlx_ptr, g->frame.img);
+
+	if (g->win_ptr)
+		mlx_destroy_window(g->mlx_ptr, g->win_ptr);
+
+	if (g->mlx_ptr)
+	{
+		mlx_destroy_display(g->mlx_ptr);
+		free(g->mlx_ptr);
+	}
 	exit(0);
-	return (0);
 }
+
 
 int	main(int argc, char **argv)
 {
