@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/11/20 15:42:09 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/25 19:06:35 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,45 @@
 # include <math.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-# define SCREEN_W 800
-# define SCREEN_H 600
-# define MAP_W 24
-# define MAP_H 6
+
+//GAME CONSTANTs
+# define LEFT_ARROW 65361
+# define RIGTH_ARROW 65363
+# define UP_ARROW 65362
+# define DOWN_ARROW 65364
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
+# define W_W 1280
+# define W_H 768
+# define MOV_SPEED 0.03
+# define ROT_SPEED 0.003
+# define TABLE_SIZE 3600
+# define PI 3.141592653589793
+
+//ERR_MSGs
+# define E_ARG "ERROR:\nInvalid n of arguments.\n"
+# define E_ALLOC "ERROR:\nMalloc.\n"
+# define CLR_SYN "ERROR:\nColor syntax error.\n"
+# define CLR_VAL "ERROR:\nInvalid color value.\n"
+# define ELE_EMPTY "ERROR:\nOne or more element's value not set.\n"
+# define ELE_VAL "ERROR:\nInvalid element value.\n"
+# define ELE_INV "ERROR:\nUnexpected element at line %d.\n"
+# define FILE_OPEN "ERROR:\nOpen error "
+# define FILE_READ "ERROR:\nRead error"
+# define FILE_EMPTY "ERROR:\nEmpty file as argument.\n"
+# define FILE_FORM "ERROR:\nInvalid file format, expected %s format.\n"
+# define MAP_MSTART "ERROR:\nMultiple starting positions.\n"
+# define MAP_INV "ERROR:\nUnknown character in map.\n"
+# define MAP_EMPTY "ERROR:\nEmpty line in map.\n"
+# define MAP_NULL "ERROR:\nNo map found.\n"
+# define MAP_NSTART "ERROR:\nNo starting position was set.\n"
+# define MAP_INC "ERROR:\nMap is not incased.\n"
+# define ERR_WIN "ERROR:\nNew window creation failed.\n"
+# define ERR_IMG "ERROR:\nNew image creation failed.\n"
+# define ERR_IMG_CONV "ERROR:\nFile to image conversion failed.\n"
 
 typedef struct s_color
 {
@@ -31,12 +66,19 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
-typedef struct s_map
+typedef struct s_info_map
 {
-	char	**grid;
-	int		width;
-	int		height;
-}	t_map;
+	char	*n_path;
+	char	*s_path;
+	char	*e_path;
+	char	*w_path;
+	char	*f_color;
+	char	*c_color;
+	int		e_set;
+	char	facing;
+	double	p_x;
+	double	p_y;
+}	t_info_map;
 
 typedef struct s_img
 {
@@ -49,80 +91,89 @@ typedef struct s_img
 	int		img_h;
 }	t_img;
 
-typedef struct s_textures
+typedef struct s_draw
 {
-	t_img	*north;
-	t_img	*south;
-	t_img	*west;
-	t_img	*east;
-}	t_textures;
+	t_img	*texture;
+	int		tex_x;
+	int		tex_y;
+	double	tex_pos;
+	int		color;
+	double	step;
+}	t_draw;
 
-typedef struct s_player
+typedef struct s_tex
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-}	t_player;
+	t_img	*N_tex;
+	t_img	*S_tex;
+	t_img	*W_tex;
+	t_img	*E_tex;
+	int		f_color;
+	int		c_color;
+}	t_tex;
+
+typedef struct s_vctr
+{
+	double	x;
+	double	y;
+}	t_vctr;
 
 typedef struct s_ray
 {
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
+	t_vctr		p_pos;
+	t_vctr		p_dir;
+	t_vctr		plane;
+	t_vctr		ray_dir;
+	t_vctr		delta_dist;
+	t_vctr		side_dist;
+	double		cam_len;
+	double		move_speed;
+	double		perpen_dist;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			side;
+	int			draw_start;
+	int			draw_end;
+	int			draw_len;
+	double		sin_arr[TABLE_SIZE];
+	double		cos_arr[TABLE_SIZE];
+	int			table_size;
 }	t_ray;
 
 typedef struct s_game
 {
-	t_textures	textures;
-	t_color		floor;
-	t_color		ceiling;
-	t_map		map;
-	t_player	*p1;
-	int			map_started;
+	t_tex		tex;
+	t_ray		ray;
+	t_img		*frame;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	char		**file;
+	char		**map;
+	int			map_w;
+	int			map_h;
+	int			mov_key;
+	int			rot_key;
 }	t_game;
 
 // PARSING
-t_color	parse_color(char *str);
-int		parse_file(char *filename, t_game *game);
-void	parse_line(char *line, t_game *game);
-int		is_empty_line(char *line);
-void	free_split(char **split);
-void	validate_map(t_game *game);
-void	add_map_line(t_game *game, char *line);
-int		is_player_char(char c);
-void	init_player_direction(t_player **p, char c);
-void	find_player(t_game *game);
+bool	get_file_info(char **file, t_game *g, t_info_map *info);
+bool	extract_file_info(t_info_map *info, t_game *g);
+char	*clean_value(char *line);
+int		convert_color(char *s);
+bool	is_empty(char *str);
+bool	parse_tex(t_game *g, t_info_map *info);
+bool	map_parse(t_game *g, t_info_map *info);
+void	clean_up(t_game *g);
+bool	bool_fill(char **map, t_game *g, int y, int x);
+bool	invalid_char(char *s, t_game *g);
+void	copy_row(char *r, char *s, int y, t_info_map *info);
+char	**file_coping(char *path);
+bool	args_check(int ac, char **av);
+bool	check_format(char *path, char *format);
 
-// INIT
-bool	init_player(t_player *p);
-bool	init_libx(t_game *g);
-bool	init_game(t_game *g, char *av);
-bool	init_map(t_map *m);
+// INIT GAME
+bool	init_game(t_game *t, char **av, int ac);
 
-// RAYCASTING
-int		raycast(t_game *game);
-void	compute_wall_distance(t_ray *ray, t_player *p);
-void	draw_vertical_line(t_game *game, t_ray *ray, int x);
-
-// RENDERING
-bool	render_game(t_game *g);
-
-// ERRORS
-void	print_error(char *msg);
 
 #endif
