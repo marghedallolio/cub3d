@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:44:16 by francema          #+#    #+#             */
-/*   Updated: 2025/11/24 19:34:45 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:52:27 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	convert_color(char *s)
 	int		r;
 	int		g;
 	int		b;
-	char	**rgbs;//rgb components
+	char	**rgbs;
 
 	r = 0;
 	g = 0;

@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/01 16:17:40 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:42:34 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int		convert_color(char *s);
 bool	is_empty(char *str);
 bool	parse_tex(t_game *g, t_info_map *info);
 bool	map_parse(t_game *g, t_info_map *info);
+char	**add_line(char **mat, char *line);
 void	clean_up(t_game *g);
 bool	bool_fill(char **map, t_game *g, int y, int x);
 bool	invalid_char(char *s, t_game *g);
@@ -172,8 +173,26 @@ char	**file_coping(char *path);
 bool	args_check(int ac, char **av);
 bool	check_format(char *path, char *format);
 
+//DRAWING
+void	perform_dda(t_ray *ray, t_game *g);
+void	compute_projection(t_game *g);
+void	draw_wall_column(t_game *g, int x);
+t_img	*get_texture(t_game *g);
+void	drawing_loop(t_draw *temp, t_game *g, int x);
+int		get_texture_x_coordinate(t_draw *temp, t_game *g);
+void	draw_remaining_background(t_game *g, int x);
+void	prepare_ray(t_ray *ray, int x);
+
 // INIT GAME
 bool	init_game(t_game *g, char **av, int ac);
+bool	init_vector(t_info_map *info, t_ray *ray);
 
+// MOVEMENTS
+void	check_for_movement(t_game *g);
+int		handle_key_press(int keycode, t_game *g);
+int		handle_key_release(int keycode, t_game *g);
+
+//SRCs
+int	close_window(t_game *g);
 
 #endif

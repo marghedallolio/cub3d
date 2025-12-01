@@ -6,13 +6,14 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:24:34 by francema          #+#    #+#             */
-/*   Updated: 2025/11/24 19:35:47 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:50:38 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
-bool	bool_fill(char **map, t_game *g, int y, int x)//FLOOD FILL ALGORITHM TO CHECK IF THE MAP IS ENCLOSED
+//FLOOD FILL ALGORITHM TO CHECK IF THE MAP IS ENCLOSED
+bool	bool_fill(char **map, t_game *g, int y, int x)
 {
 	if (y < 0 || y >= g->map_h || x < 0 || x >= g->map_w)
 		return (false);
@@ -25,7 +26,8 @@ bool	bool_fill(char **map, t_game *g, int y, int x)//FLOOD FILL ALGORITHM TO CHE
 		&& bool_fill(map, g, y, x - 1));
 }
 
-void	clean_up(t_game *g)//CLEAN UP THE MAP FROM '0's TO SPACES AFTER FLOOD FILL
+//CLEAN UP THE MAP FROM '0's TO SPACES AFTER FLOOD FILL
+void	clean_up(t_game *g)
 {
 	int	i;
 	int	j;
@@ -45,7 +47,8 @@ void	clean_up(t_game *g)//CLEAN UP THE MAP FROM '0's TO SPACES AFTER FLOOD FILL
 	}
 }
 
-void	copy_row(char *r, char *s, int y, t_info_map *info)//COPY A ROW FROM THE ORIGINAL MAP TO THE NORMALIZED MAP
+//COPY A ROW FROM THE ORIGINAL MAP TO THE NORMALIZED MAP
+void	copy_row(char *r, char *s, int y, t_info_map *info)
 {
 	int	i;
 
@@ -65,7 +68,8 @@ void	copy_row(char *r, char *s, int y, t_info_map *info)//COPY A ROW FROM THE OR
 	}
 }
 
-bool	multiple_start(char c)//CHECK FOR MULTIPLE PLAYER START POSITIONS
+//CHECK FOR MULTIPLE PLAYER START POSITIONS
+bool	multiple_start(char c)
 {
 	static bool	start;
 
@@ -79,7 +83,8 @@ bool	multiple_start(char c)//CHECK FOR MULTIPLE PLAYER START POSITIONS
 	return (false);
 }
 
-bool	invalid_char(char *s, t_game *g)//SEARCH INVALID CHARS/PATTERNS(DUBLE START)
+//SEARCH INVALID CHARS/PATTERNS(DUBLE START)
+bool	invalid_char(char *s, t_game *g)
 {
 	int	i;
 	int	line_len;

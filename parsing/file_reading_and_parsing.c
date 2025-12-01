@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:49:25 by francema          #+#    #+#             */
-/*   Updated: 2025/11/24 19:35:27 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:54:27 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,6 @@ bool	parse_line(char *line, t_info_map *info, int idx)
 	return (true);
 }
 
-bool	is_empty(char *str)//UTILS FUN
-{
-	int	i;
-
-	i = 0;
-	i = (int)ft_skip_spaces(str, i);
-	if (str[i] == '\0')
-		return (true);
-	return (false);
-}
-
 bool	get_file_info(char **file, t_game *g, t_info_map *info)
 {
 	int	i;
@@ -75,7 +64,7 @@ bool	get_file_info(char **file, t_game *g, t_info_map *info)
 	{
 		if (!is_empty(file[i]))
 		{
-			if (info->e_set == 6)//all elements set, map starts
+			if (info->e_set == 6)
 			{
 				g->map = &file[i];
 				break;

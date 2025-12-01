@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:05:13 by francema          #+#    #+#             */
-/*   Updated: 2025/11/25 19:08:31 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:42:13 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,6 @@ bool	openable(char *path, int *fd)
 	close(tmp_fd);
 	*fd = open(path, O_RDONLY);
 	return (true);
-}
-
-char	**add_line(char **mat, char *line)
-{
-	char	**new_mat;
-	int		len;
-	int		i;
-
-	new_mat = NULL;
-	len = 0;
-	i = 0;
-	if (mat)
-		len = ft_matlen((void **)mat);
-	new_mat = ft_malloc((len + 2) * sizeof(char *), false);
-	if (!new_mat)
-		return (ft_printf(E_ALLOC), NULL);
-	while (mat && mat[i])
-	{
-		new_mat[i] = mat[i];
-		i++;
-	}
-	new_mat[i] = line;
-	new_mat[i + 1] = NULL;
-	return (new_mat);
 }
 
 char	**file_coping(char *path)

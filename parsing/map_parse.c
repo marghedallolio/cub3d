@@ -6,15 +6,15 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:22:39 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 16:08:27 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:54:55 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube3d.h"
 
 //MAP PARSING
-
-bool	check_characters(char **map, t_game *g)//CHECK FOR INVALID CHARS IN THE MAP
+//CHECK FOR INVALID CHARS IN THE MAP
+bool	check_characters(char **map, t_game *g)
 {
 	int	i;
 
@@ -34,7 +34,8 @@ bool	check_characters(char **map, t_game *g)//CHECK FOR INVALID CHARS IN THE MAP
 	return (true);
 }
 
-char	**normalize_map(char **map, t_game *g, t_info_map *parse)//NORMALIZE THE MAP TO A RECTANGULAR MATRIX FILLED WITH '0's
+//NORMALIZE THE MAP TO A RECTANGULAR MATRIX FILLED WITH '0's
+char	**normalize_map(char **map, t_game *g, t_info_map *parse)
 {
 	char	**norm_map;
 	int		i;
@@ -58,7 +59,8 @@ char	**normalize_map(char **map, t_game *g, t_info_map *parse)//NORMALIZE THE MA
 	return (norm_map);
 }
 
-bool	incased(char **map, t_game *g, t_info_map *info)//CHECK IF THE MAP IS ENCLOSED USING FLOOD FILL
+//CHECK IF THE MAP IS ENCLOSED USING FLOOD FILL
+bool	incased(char **map, t_game *g, t_info_map *info)
 {
 	int	i;
 	int	j;
@@ -82,7 +84,8 @@ bool	incased(char **map, t_game *g, t_info_map *info)//CHECK IF THE MAP IS ENCLO
 	return (true);
 }
 
-bool	map_parse(t_game *g, t_info_map *info)//PARSE THE MAP: CHECK CHARACTERS, NORMALIZE, CHECK ENCLOSURE
+//PARSE THE MAP: CHECK CHARACTERS, NORMALIZE, CHECK ENCLOSURE
+bool	map_parse(t_game *g, t_info_map *info)
 {
 	if (!g->map)
 		return (ft_printf(MAP_NULL), false);
