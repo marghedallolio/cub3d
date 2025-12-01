@@ -49,7 +49,7 @@ char	*get_word(const char *s, int i, char c)
 	j = 0;
 	while (s[i + j] && s[i + j] != c)
 		j++;
-	str = malloc(sizeof(char) * (j + 1));
+	str = ft_malloc(sizeof(char) * (j + 1), 0);
 	if (!str)
 		return (NULL);
 	j = 0;
@@ -94,7 +94,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	ret = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	ret = ft_malloc(sizeof(char *) * (ft_count_words(s, c) + 1), 0);
 	if (!ret)
 		return (NULL);
 	ft_split_utils(ret, s, c);

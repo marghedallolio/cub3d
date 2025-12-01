@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+         #
+#    By: francema <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 14:09:53 by mdalloli          #+#    #+#              #
-#    Updated: 2025/11/19 15:17:19 by mdalloli         ###   ########.fr        #
+#    Updated: 2025/11/24 19:39:47 by francema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,16 @@ CC = cc
 CFLAGS = -Werror -Wextra -Wall -g
 MLXFLAGS = -Lmlx -lXext -lm -lmlx -lX11
 
-SRC = main.c errors.c init.c
-PARSING_SRC = parsing/parse_color.c parsing/parse_file.c parsing/parse_line.c parsing/parse_map.c parsing/parse_utils.c
-RENDERING_SRC = rendering/render_game.c rendering/render_line.c
-RAYCASTING_SRC = raycasting/raycasting_utils.c raycasting/raycasting.c
+SRC = main.c errors.c init_game.c
+PARSING_SRC = parsing/file_info_extr_utils.c parsing/file_info_extr.c \
+			parsing/file_reading_and_parsing.c parsing/map_parse_utils.c parsing/map_parse.c\
+			parsing/pre_file_parsing.c parsing/texture_parse.c
+
+# RENDERING_SRC = rendering/render_game.c rendering/render_line.c
+# RAYCASTING_SRC = raycasting/raycasting_utils.c raycasting/raycasting.c
 
 
-SRC_ALL = $(SRC) $(PARSING_SRC) $(RENDERING_SRC) $(RAYCASTING_SRC)
+SRC_ALL = $(SRC) $(PARSING_SRC) #$(RENDERING_SRC) $(RAYCASTING_SRC)
 OBJ = $(SRC_ALL:.c=.o)
 
 all: $(NAME)
