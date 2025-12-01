@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:39:28 by francema          #+#    #+#             */
-/*   Updated: 2025/11/19 16:16:40 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/11/20 15:55:51 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ char	*extract_line(char **buffer)
 	if (!(*buffer)[i])
 	{
 		line = ft_strdup(*buffer);
-	//	free(*buffer);
 		*buffer = NULL;
 		return (line);
 	}
 	line = ft_substr(*buffer, 0, i + 1);
 	new_buf = ft_strdup(*buffer + i + 1);
-	//free(*buffer);
 	*buffer = new_buf;
 	if (!(*buffer))
 		return (NULL);
@@ -55,7 +53,6 @@ char	*get_lines(int fd, char *buffer)
 		tmp = ft_strjoin_gnl(buffer, tmp_buf);
 		if (!tmp)
 			return (NULL);
-		// free(buffer);
 		buffer = tmp;
 	}
 	return (buffer);

@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 16:09:01 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:17:15 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,20 +172,6 @@ static void	perform_dda(t_ray *ray, t_game *g)
 
 	hit = 0;
 	rendered = 0;
-	// printf("ray->map_x %d\n", ray->map_x);
-	// printf("ray->map_y %d\n", ray->map_y);
-	// printf("map_w %d\n", g->map_w);
-	// printf("map_h %d\n", g->map_h);
-	// printf("g->ray.p_pos.y %f\n", g->ray.p_pos.y);
-	// printf("g->ray.p_pos.x %f\n", g->ray.p_pos.x);
-	// printf("g->ray.ray_dir.x %f\n", g->ray.ray_dir.x);
-	// printf("g->ray.ray_dir.y %f\n", g->ray.ray_dir.y);
-	// printf("g->ray.p_dir.x %f\n", g->ray.p_dir.x);
-	// printf("g->ray.p_dir.y %f\n", g->ray.p_dir.y);
-	// printf("g->ray.plane.x %f\n", g->ray.plane.x);
-	// printf("g->ray.plane.y %f\n", g->ray.plane.y);
-	// printf("char map[%d][%d] is: %c",ray->map_y, ray->map_x, g->map[ray->map_y][ray->map_x]);
-
 	while (hit == 0 && rendered <= 30)
 	{
 		// take a step
