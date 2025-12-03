@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:15:43 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/03 16:02:25 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:57:46 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,13 @@ bool	parse(t_game *g, t_info_map *info, char **av)
 	return (true);
 }
 
+double get_time_in_seconds(void)
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	return tv.tv_sec + tv.tv_usec / 1e6;
+}
+
 /* Inizializza tutte le componenti del gioco: player, mappa, parsing e MiniLibX.
 Restituisce false in caso di errore durante l’inizializzazione. */
 bool	init_game(t_game *g, char **av, int ac)
@@ -60,6 +67,9 @@ bool	init_game(t_game *g, char **av, int ac)
 	info = (t_info_map){0};
 	g->tex = (t_tex){0};
 	g->ray = (t_ray){0};
+	g->fps = (t_fps){0};
+	g->fps.last_time = get_time_in_seconds();
+	g->key_mask = 0;
 	if (!args_check(ac, av))
 		exit(1);
 	if (!init_mlx_game(g))
