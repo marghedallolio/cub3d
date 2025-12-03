@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_file_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:05:13 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 17:42:13 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/03 15:52:43 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ bool	check_format(char *path, char *format)
 bool	args_check(int ac, char **av)
 {
 	if (ac != 2)
-		return (printf("%s", E_ARG), false);
+	{
+		printf("%s", E_ARG);
+		exit(1);
+	}
 	if (!check_format(av[1], ".cub"))
 		return (false);
 	return (true);

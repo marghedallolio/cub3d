@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:15:43 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/01 17:36:19 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:02:25 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ bool	init_game(t_game *g, char **av, int ac)
 	g->tex = (t_tex){0};
 	g->ray = (t_ray){0};
 	if (!args_check(ac, av))
-		return (false);
+		exit(1);
 	if (!init_mlx_game(g))
-		return (false);
+		exit(1);
 	if (!parse(g, &info, av))
-		return (false);
+		exit(1);
 	if (!init_vector(&info, &g->ray))
-		return (false);
+		exit(1);
 	return (true);
 }
