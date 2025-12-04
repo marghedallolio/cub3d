@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 17:33:55 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:34:11 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	move(t_ray *ray, int keycode)
 
 void	key_rotate(t_ray *ray, double rot)
 {
-		double	old_dir;
-		double	old_plane;
-		int		rot_index;
-		double	c;
-		double	s;
+	double	old_dir;
+	double	old_plane;
+	int		rot_index;
+	double	c;
+	double	s;
 
 	rot_index = (int)((rot / (2.0 * PI)) * ray->table_size);
 	rot_index = (rot_index + ray->table_size) % ray->table_size;
@@ -59,13 +59,13 @@ void	key_rotate(t_ray *ray, double rot)
 void	check_for_movement(t_game *g)
 {
 	if (g->mov_key)
-	move(&g->ray, g->mov_key);
+		move(&g->ray, g->mov_key);
 	if (g->rot_key)
 	{
 		if (g->rot_key == LEFT_ARROW)
-		key_rotate(&g->ray, -ROT_SPEED);
+			key_rotate(&g->ray, -ROT_SPEED);
 		if (g->rot_key == RIGTH_ARROW)
-		key_rotate(&g->ray, ROT_SPEED);
+			key_rotate(&g->ray, ROT_SPEED);
 	}
 }
 

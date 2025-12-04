@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:09:35 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 17:39:59 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:32:04 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	compute_projection(t_game *g)
 {
-	int eye_offset;
+	int	eye_offset;
 
 	eye_offset = 0;
 	if (g->ray.perpen_dist == 0)
@@ -25,10 +25,12 @@ void	compute_projection(t_game *g)
 		return ;
 	}
 	g->ray.draw_len = (int)(g->frame->img_h / g->ray.perpen_dist);
-	g->ray.draw_start = (-g->ray.draw_len / 2) + (g->frame->img_h / 2) + eye_offset;
+	g->ray.draw_start = (-g->ray.draw_len / 2) + (g->frame->img_h / 2)
+		+ eye_offset;
 	if (g->ray.draw_start < 0)
-	g->ray.draw_start = 0;
-	g->ray.draw_end = (g->ray.draw_len / 2) + (g->frame->img_h / 2) + eye_offset;
+		g->ray.draw_start = 0;
+	g->ray.draw_end = (g->ray.draw_len / 2) + (g->frame->img_h / 2)
+		+ eye_offset;
 	if (g->ray.draw_end >= g->frame->img_h)
 		g->ray.draw_end = g->frame->img_h - 1;
 }

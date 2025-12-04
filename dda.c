@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:00:53 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 17:33:34 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:33:34 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	prepare_steps(t_ray *ray)
 	else
 	{
 		ray->step_x = 1;
-		ray->side_dist.x = (ray->map_x + 1.0 - ray->p_pos.x) * ray->delta_dist.x;
+		ray->side_dist.x = (ray->map_x + 1.0 - ray->p_pos.x)
+			* ray->delta_dist.x;
 	}
 	if (ray->ray_dir.y < 0)
 	{
@@ -34,7 +35,8 @@ void	prepare_steps(t_ray *ray)
 	else
 	{
 		ray->step_y = 1;
-		ray->side_dist.y = (ray->map_y + 1.0 - ray->p_pos.y) * ray->delta_dist.y;
+		ray->side_dist.y = (ray->map_y + 1.0 - ray->p_pos.y)
+			* ray->delta_dist.y;
 	}
 }
 
