@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 17:06:33 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 17:40:04 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:34:55 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_img	*get_texture(t_game *g)
 	if (g->ray.side == 0)
 	{
 		if (g->ray.ray_dir.x > 0)
-			return (g->tex.W_tex);
-		return (g->tex.E_tex);
+			return (g->tex.w_tex);
+		return (g->tex.e_tex);
 	}
 	if (g->ray.ray_dir.y > 0)
-		return (g->tex.N_tex);
-	return (g->tex.S_tex);
+		return (g->tex.n_tex);
+	return (g->tex.s_tex);
 }
 
 int	get_texture_x_coordinate(t_draw *temp, t_game *g)

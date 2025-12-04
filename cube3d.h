@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/03 17:26:11 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:42:17 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,10 @@
 # define A 97
 # define S 115
 # define D 100
-//bit flags start
-# define KEY_W		(1 << 0)
-# define KEY_S		(1 << 1)
-# define KEY_A		(1 << 2)
-# define KEY_D		(1 << 3)
-# define KEY_LEFT	(1 << 4)
-# define KEY_RIGHT	(1 << 5)
-//bit flag end
 # define W_W 1280
 # define W_H 768
-# define MOV_SPEED 0.05
-# define ROT_SPEED 0.05
+# define MOV_SPEED 0.03
+# define ROT_SPEED 0.03
 # define TABLE_SIZE 3600
 # define PI 3.141592653589793
 
@@ -77,11 +69,10 @@ typedef struct s_color
 
 typedef struct s_fps
 {
-	int frame_count;
-	double last_time;
-	double fps;
+	double	last_time;
+	double	fps;
+	int		frame_count;
 }	t_fps;
-
 
 typedef struct s_info_map
 {
@@ -120,10 +111,10 @@ typedef struct s_draw
 
 typedef struct s_tex
 {
-	t_img	*N_tex;
-	t_img	*S_tex;
-	t_img	*W_tex;
-	t_img	*E_tex;
+	t_img	*n_tex;
+	t_img	*s_tex;
+	t_img	*w_tex;
+	t_img	*e_tex;
 	int		f_color;
 	int		c_color;
 }	t_tex;
@@ -213,6 +204,6 @@ int		handle_key_press(int keycode, t_game *g);
 int		handle_key_release(int keycode, t_game *g);
 
 //SRCs
-int	close_window(t_game *g);
+int		close_window(t_game *g);
 
 #endif

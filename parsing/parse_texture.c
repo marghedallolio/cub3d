@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:20:23 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:34:52 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:49:12 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ bool	parse_tex(t_game *g, t_info_map *info)
 		|| !check_format(info->e_path, ".xpm")
 		|| !check_format(info->w_path, ".xpm"))
 		return (false);
-	g->tex.N_tex = load_tex_info(g->mlx_ptr, info->n_path);
-	g->tex.S_tex = load_tex_info(g->mlx_ptr, info->s_path);
-	g->tex.E_tex = load_tex_info(g->mlx_ptr, info->e_path);
-	g->tex.W_tex = load_tex_info(g->mlx_ptr, info->w_path);
-	if (!g->tex.N_tex || !g->tex.S_tex
-		|| !g->tex.E_tex || !g->tex.W_tex)
+	g->tex.n_tex = load_tex_info(g->mlx_ptr, info->n_path);
+	g->tex.s_tex = load_tex_info(g->mlx_ptr, info->s_path);
+	g->tex.e_tex = load_tex_info(g->mlx_ptr, info->e_path);
+	g->tex.w_tex = load_tex_info(g->mlx_ptr, info->w_path);
+	if (!g->tex.n_tex || !g->tex.s_tex
+		|| !g->tex.e_tex || !g->tex.w_tex)
 		return (false);
 	return (true);
 }

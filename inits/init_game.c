@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:15:43 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/04 15:45:28 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:55:48 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	clear_mlx(t_game *g)
 		mlx_destroy_window(g->mlx_ptr, g->win_ptr);
 	if (g->frame->img)
 		mlx_destroy_image(g->mlx_ptr, g->frame->img);
-	if (g->tex.E_tex || g->tex.N_tex || g->tex.S_tex || g->tex.W_tex)
+	if (g->tex.e_tex || g->tex.n_tex || g->tex.s_tex || g->tex.w_tex)
 	{
-		if (g->tex.N_tex->img)
-			mlx_destroy_image(g->mlx_ptr, g->tex.N_tex->img);
-		if (g->tex.S_tex->img)
-			mlx_destroy_image(g->mlx_ptr, g->tex.S_tex->img);
-		if (g->tex.E_tex->img)
-			mlx_destroy_image(g->mlx_ptr, g->tex.E_tex->img);
-		if (g->tex.W_tex->img)
-			mlx_destroy_image(g->mlx_ptr, g->tex.W_tex->img);
+		if (g->tex.n_tex->img)
+			mlx_destroy_image(g->mlx_ptr, g->tex.n_tex->img);
+		if (g->tex.s_tex->img)
+			mlx_destroy_image(g->mlx_ptr, g->tex.s_tex->img);
+		if (g->tex.e_tex->img)
+			mlx_destroy_image(g->mlx_ptr, g->tex.e_tex->img);
+		if (g->tex.w_tex->img)
+			mlx_destroy_image(g->mlx_ptr, g->tex.w_tex->img);
 	}
 	if (g->mlx_ptr)
 	{
