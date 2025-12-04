@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:04:44 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:42:57 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	free_images(t_game *g)
 {
 	if (g->frame)
 		mlx_destroy_image(g->mlx_ptr, g->frame->img);
-	if (g->tex.N_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.N_tex->img);
-	if (g->tex.S_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.S_tex->img);
-	if (g->tex.E_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.E_tex->img);
-	if (g->tex.W_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.W_tex->img);
+	if (g->tex.n_tex)
+		mlx_destroy_image(g->mlx_ptr, g->tex.n_tex->img);
+	if (g->tex.s_tex)
+		mlx_destroy_image(g->mlx_ptr, g->tex.s_tex->img);
+	if (g->tex.e_tex)
+		mlx_destroy_image(g->mlx_ptr, g->tex.e_tex->img);
+	if (g->tex.w_tex)
+		mlx_destroy_image(g->mlx_ptr, g->tex.w_tex->img);
 }
 
 int	close_window(t_game *g)
@@ -46,8 +46,8 @@ void draw_fps(t_game *g)
 	int fps_dec;
 	int index;
 
-	fps_dec = (int)((g->fps.fps - fps_int) * 10);
 	fps_int = (int)g->fps.fps;
+	fps_dec = (int)((g->fps.fps - fps_int) * 10);
 	index = 0;
 	buffer[index++] = 'F';
 	buffer[index++] = 'P';

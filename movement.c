@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/03 17:01:21 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:40:38 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,17 @@ void	check_for_movement(t_game *g)
 {
 	int mask = g->key_mask;
 
-	if (mask & KEY_W)
+	if (mask & (1 << 0))
 		move(&g->ray, g, W);
-	if (mask & KEY_S)
+	if (mask & (1 << 1))
 		move(&g->ray, g, S);
-	if (mask & KEY_A)
+	if (mask & (1 << 2))
 		move(&g->ray, g, A);
-	if (mask & KEY_D)
+	if (mask & (1 << 3))
 		move(&g->ray, g, D);
-	if (mask & KEY_LEFT)
+	if (mask & (1 << 4))
 		key_rotate(&g->ray, -ROT_SPEED);
-	if (mask & KEY_RIGHT)
+	if (mask & (1 << 5))
 		key_rotate(&g->ray, ROT_SPEED);
 }
 
@@ -97,12 +97,12 @@ int	handle_key_press(int keycode, t_game *g)
 
 	if (keycode == ESC)
 		return (close_window(g), 0);
-	mask |= (keycode == W) * KEY_W;
-	mask |= (keycode == S) * KEY_S;
-	mask |= (keycode == A) * KEY_A;
-	mask |= (keycode == D) * KEY_D;
-	mask |= (keycode == LEFT_ARROW) * KEY_LEFT;
-	mask |= (keycode == RIGHT_ARROW) * KEY_RIGHT;
+	mask |= (keycode == W) * (1 << 0);
+	mask |= (keycode == S) * (1 << 1);
+	mask |= (keycode == A) * (1 << 2);
+	mask |= (keycode == D) * (1 << 3);
+	mask |= (keycode == LEFT_ARROW) * (1 << 4);
+	mask |= (keycode == RIGHT_ARROW) * (1 << 5);
 	g->key_mask |= mask;
 	return 0;
 }
@@ -112,12 +112,12 @@ int	handle_key_release(int keycode, t_game *g)
 {
 	int mask = 0;
 
-	mask |= (keycode == W) * KEY_W;
-	mask |= (keycode == S) * KEY_S;
-	mask |= (keycode == A) * KEY_A;
-	mask |= (keycode == D) * KEY_D;
-	mask |= (keycode == LEFT_ARROW) * KEY_LEFT;
-	mask |= (keycode == RIGHT_ARROW) * KEY_RIGHT;
+	mask |= (keycode == W) * (1 << 0);
+	mask |= (keycode == S) * (1 << 1);
+	mask |= (keycode == A) * (1 << 2);
+	mask |= (keycode == D) * (1 << 3);
+	mask |= (keycode == LEFT_ARROW) * (1 << 4);
+	mask |= (keycode == RIGHT_ARROW) * (1 << 5);
 	g->key_mask &= ~mask;
 	return 0;
 }
