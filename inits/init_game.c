@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:15:43 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/04 15:55:48 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:59:45 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ bool	parse(t_game *g, t_info_map *info, char **av)
 
 double	get_time_in_seconds(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec + tv.tv_usec / 1e6);

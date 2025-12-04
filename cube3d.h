@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/04 15:42:17 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:04:26 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ char	**file_coping(char *path);
 bool	args_check(int ac, char **av);
 bool	check_format(char *path, char *format);
 
-//DRAWING
+// DRAWING
 void	perform_dda(t_ray *ray, t_game *g);
 void	compute_projection(t_game *g);
 void	draw_wall_column(t_game *g, int x);
@@ -203,7 +203,8 @@ void	check_for_movement(t_game *g);
 int		handle_key_press(int keycode, t_game *g);
 int		handle_key_release(int keycode, t_game *g);
 
-//SRCs
+// FREE_CLOSE
 int		close_window(t_game *g);
+void	free_images(t_game *g);
 
 #endif

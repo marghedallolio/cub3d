@@ -6,45 +6,20 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:55:39 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:03:02 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	free_images(t_game *g)
-{
-	if (g->frame)
-		mlx_destroy_image(g->mlx_ptr, g->frame->img);
-	if (g->tex.n_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.n_tex->img);
-	if (g->tex.s_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.s_tex->img);
-	if (g->tex.e_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.e_tex->img);
-	if (g->tex.w_tex)
-		mlx_destroy_image(g->mlx_ptr, g->tex.w_tex->img);
-}
-
-int	close_window(t_game *g)
-{
-	ft_printf("finestra chiusa!\n");
-	if (g->win_ptr)
-		mlx_destroy_window(g->mlx_ptr, g->win_ptr);
-	free_images(g);
-	mlx_destroy_display(g->mlx_ptr);
-	free(g->mlx_ptr);
-	ft_malloc(0, 1);
-	exit(0);
-	return (0);
-}
-
 void	draw_fps(t_game *g)
 {
-	char buffer[32];
-	int fps_int;
-	int fps_dec;
-	int index;
+	char	buffer[32];
+	int		fps_int;
+	int		fps_dec;
+	int		index;
+	int		temp[10];
+	int		i;
 
 	fps_int = (int)g->fps.fps;
 	fps_dec = (int)((g->fps.fps - fps_int) * 10);
@@ -58,7 +33,7 @@ void	draw_fps(t_game *g)
 		buffer[index++] = '0';
 	else
 	{
-		int temp[10], i = 0;
+		i = 0;
 		while (fps_int > 0)
 		{
 			temp[i++] = fps_int % 10;
@@ -75,9 +50,9 @@ void	draw_fps(t_game *g)
 
 int	game(t_game *g)
 {
-	int	x;
-	static double now;
-	static double delta;
+	int				x;
+	static double	now;
+	static double	delta;
 
 	x = 0;
 	check_for_movement(g);

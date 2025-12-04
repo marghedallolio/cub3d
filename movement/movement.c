@@ -6,11 +6,11 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:55:31 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:58:01 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "../cube3d.h"
 
 void	set_dir(t_ray *ray, double *dir_x, double *dir_y, int keycode)
 {
@@ -91,36 +91,3 @@ void	check_for_movement(t_game *g)
 	if (mask & (1 << 5))
 		key_rotate(&g->ray, ROT_SPEED);
 }
-
-
-int	handle_key_press(int keycode, t_game *g)
-{
-	int mask = 0;
-
-	if (keycode == ESC)
-		return (close_window(g), 0);
-	mask |= (keycode == W) * (1 << 0);
-	mask |= (keycode == S) * (1 << 1);
-	mask |= (keycode == A) * (1 << 2);
-	mask |= (keycode == D) * (1 << 3);
-	mask |= (keycode == LEFT_ARROW) * (1 << 4);
-	mask |= (keycode == RIGHT_ARROW) * (1 << 5);
-	g->key_mask |= mask;
-	return 0;
-}
-
-
-int	handle_key_release(int keycode, t_game *g)
-{
-	int mask = 0;
-
-	mask |= (keycode == W) * (1 << 0);
-	mask |= (keycode == S) * (1 << 1);
-	mask |= (keycode == A) * (1 << 2);
-	mask |= (keycode == D) * (1 << 3);
-	mask |= (keycode == LEFT_ARROW) * (1 << 4);
-	mask |= (keycode == RIGHT_ARROW) * (1 << 5);
-	g->key_mask &= ~mask;
-	return 0;
-}
-
