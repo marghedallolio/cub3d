@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:40:38 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:48:04 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	move(t_ray *ray, t_game *g, int keycode)
 
 void	key_rotate(t_ray *ray, double rot)
 {
-		double	old_dir;
-		double	old_plane;
-		int		rot_index;
-		double	c;
-		double	s;
+	double	old_dir;
+	double	old_plane;
+	int		rot_index;
+	double	c;
+	double	s;
 
 	rot_index = (int)((rot / (2.0 * PI)) * ray->table_size);
 	rot_index = (rot_index + ray->table_size) % ray->table_size;

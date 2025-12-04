@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_reading_and_parsing.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 16:49:25 by francema          #+#    #+#             */
-/*   Updated: 2025/12/01 16:54:27 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:20:43 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	parse_line(char *line, t_info_map *info, int idx)
 	i = ft_skip_spaces(line, i);
 	if (line[i] == '\0')
 		return (false);
-	while (line[i +j] != '\0' && !ft_ispace(line[i + j]))
+	while (line[i + j] != '\0' && !ft_ispace(line[i + j]))
 		j++;
 	if (j > 2 || !get_element(&line[i], info, j))
 		return (ft_printf(ELE_INV, idx + 1), false);
@@ -67,7 +67,7 @@ bool	get_file_info(char **file, t_game *g, t_info_map *info)
 			if (info->e_set == 6)
 			{
 				g->map = &file[i];
-				break;
+				break ;
 			}
 			if (!parse_line(file[i], info, i))
 				return (false);
@@ -78,5 +78,3 @@ bool	get_file_info(char **file, t_game *g, t_info_map *info)
 		return (false);
 	return (true);
 }
-
-

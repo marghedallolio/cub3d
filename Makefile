@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: francema <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 14:09:53 by mdalloli          #+#    #+#              #
-#    Updated: 2025/12/01 17:39:31 by francema         ###   ########.fr        #
+#    Updated: 2025/12/04 15:40:01 by mdalloli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ LIBFT = libft/libft.a
 MLXFLAGS = -Lmlx -lXext -lm -lmlx -lX11
 
 SRC = main.c movement.c dda.c
-PARSING = file_info_extr_utils.c file_info_extr.c file_reading_and_parsing.c \
-		map_parse_utils.c map_parse.c pre_file_parsing.c texture_parse.c utils.c
+PARSING = extraction_file_info_utils.c extraction_file_info.c file_reading_and_parsing.c \
+		parse_map_utils.c parse_map.c pre_parsing_file.c parse_texture.c utils.c
 INITS = init_game.c init_vectors.c
 DRAWING = drawing.c drawing_utils.c
 
