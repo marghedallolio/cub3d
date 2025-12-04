@@ -3,32 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 16:03:02 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:15:51 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	draw_fps(t_game *g)
+static void	format_fps_string(char *buffer, double fps)
 {
-	char	buffer[32];
 	int		fps_int;
 	int		fps_dec;
-	int		index;
 	int		temp[10];
 	int		i;
+	int		index;
 
-	fps_int = (int)g->fps.fps;
-	fps_dec = (int)((g->fps.fps - fps_int) * 10);
+	fps_int = (int)fps;
+	fps_dec = (int)((fps - fps_int) * 10.0);
 	index = 0;
-	buffer[index++] = 'F';
-	buffer[index++] = 'P';
-	buffer[index++] = 'S';
-	buffer[index++] = ':';
-	buffer[index++] = ' ';
+	memcpy(buffer + index, "FPS: ", 5);
+	index += 5;
 	if (fps_int == 0)
 		buffer[index++] = '0';
 	else
@@ -42,17 +38,20 @@ void	draw_fps(t_game *g)
 		while (i-- > 0)
 			buffer[index++] = '0' + temp[i];
 	}
-	buffer[index++] = '.';
-	buffer[index++] = '0' + fps_dec;
-	buffer[index] = '\0';
+	memcpy(buffer + index, ".0\0", 3);
+}
+
+void	draw_fps(t_game *g)
+{
+	char	buffer[32];
+
+	format_fps_string(buffer, g->fps.fps);
 	mlx_string_put(g->mlx_ptr, g->win_ptr, 10, 10, 0xFFFFFF, buffer);
 }
 
-int	game(t_game *g)
+void	generate_frame(t_game *g)
 {
-	int				x;
-	static double	now;
-	static double	delta;
+	int	x;
 
 	x = 0;
 	check_for_movement(g);
@@ -66,6 +65,15 @@ int	game(t_game *g)
 		x++;
 	}
 	mlx_put_image_to_window(g->mlx_ptr, g->win_ptr, g->frame->img, 0, 0);
+}
+
+int	game(t_game *g)
+{
+	int				x;
+	static double	now;
+	static double	delta;
+
+	generate_frame(g);
 	g->fps.frame_count++;
 	now = get_time_in_seconds();
 	delta = now - g->fps.last_time;
