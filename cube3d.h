@@ -6,7 +6,7 @@
 /*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:11:29 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/01 17:42:34 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:26:11 by francema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,32 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <sys/time.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
 //GAME CONSTANTs
+# define ESC 65307
 # define LEFT_ARROW 65361
-# define RIGTH_ARROW 65363
+# define RIGHT_ARROW 65363
 # define UP_ARROW 65362
 # define DOWN_ARROW 65364
 # define W 119
 # define A 97
 # define S 115
 # define D 100
-# define ESC 65307
+//bit flags start
+# define KEY_W		(1 << 0)
+# define KEY_S		(1 << 1)
+# define KEY_A		(1 << 2)
+# define KEY_D		(1 << 3)
+# define KEY_LEFT	(1 << 4)
+# define KEY_RIGHT	(1 << 5)
+//bit flag end
 # define W_W 1280
 # define W_H 768
-# define MOV_SPEED 0.1
-# define ROT_SPEED 0.1
+# define MOV_SPEED 0.05
+# define ROT_SPEED 0.05
 # define TABLE_SIZE 3600
 # define PI 3.141592653589793
 
@@ -65,6 +74,14 @@ typedef struct s_color
 	int	g;
 	int	b;
 }	t_color;
+
+typedef struct s_fps
+{
+	int frame_count;
+	double last_time;
+	double fps;
+}	t_fps;
+
 
 typedef struct s_info_map
 {
@@ -145,6 +162,7 @@ typedef struct s_game
 {
 	t_tex		tex;
 	t_ray		ray;
+	t_fps		fps;
 	t_img		*frame;
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -152,6 +170,7 @@ typedef struct s_game
 	char		**map;
 	int			map_w;
 	int			map_h;
+	int			key_mask;
 	int			mov_key;
 	int			rot_key;
 }	t_game;
@@ -182,6 +201,7 @@ void	drawing_loop(t_draw *temp, t_game *g, int x);
 int		get_texture_x_coordinate(t_draw *temp, t_game *g);
 void	draw_remaining_background(t_game *g, int x);
 void	prepare_ray(t_ray *ray, int x);
+double	get_time_in_seconds(void);
 
 // INIT GAME
 bool	init_game(t_game *g, char **av, int ac);

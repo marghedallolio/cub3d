@@ -6,34 +6,50 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:34:11 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:43:16 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-void	move(t_ray *ray, int keycode)
+void	set_dir(t_ray *ray, double *dir_x, double *dir_y, int keycode)
 {
 	if (keycode == W)
 	{
-		ray->p_pos.x += ray->p_dir.x * ray->move_speed;
-		ray->p_pos.y += ray->p_dir.y * ray->move_speed;
-	}
-	else if (keycode == A)
-	{
-		ray->p_pos.x -= ray->plane.x * ray->move_speed;
-		ray->p_pos.y -= ray->plane.y * ray->move_speed;
+		*dir_x = ray->p_dir.x;
+		*dir_y = ray->p_dir.y;
 	}
 	else if (keycode == S)
 	{
-		ray->p_pos.x -= ray->p_dir.x * ray->move_speed;
-		ray->p_pos.y -= ray->p_dir.y * ray->move_speed;
+		*dir_x = -ray->p_dir.x;
+		*dir_y = -ray->p_dir.y;
+	}
+	else if (keycode == A)
+	{
+		*dir_x = -ray->plane.x;
+		*dir_y = -ray->plane.y;
 	}
 	else if (keycode == D)
 	{
-		ray->p_pos.x += ray->plane.x * ray->move_speed;
-		ray->p_pos.y += ray->plane.y * ray->move_speed;
+		*dir_x = ray->plane.x;
+		*dir_y = ray->plane.y;
 	}
+}
+
+void	move(t_ray *ray, t_game *g, int keycode)
+{
+	double dir_x = 0;
+	double dir_y = 0;
+	double new_x;
+	double new_y;
+
+	set_dir(ray, &dir_x, &dir_y, keycode);
+	new_x = ray->p_pos.x + dir_x * ray->move_speed;
+	new_y = ray->p_pos.y + dir_y * ray->move_speed;
+	if (g->map[(int)ray->p_pos.y][(int)new_x] != '1')
+		ray->p_pos.x = new_x;
+	if (g->map[(int)new_y][(int)ray->p_pos.x] != '1')
+		ray->p_pos.y = new_y;
 }
 
 void	key_rotate(t_ray *ray, double rot)
@@ -58,35 +74,51 @@ void	key_rotate(t_ray *ray, double rot)
 
 void	check_for_movement(t_game *g)
 {
-	if (g->mov_key)
-		move(&g->ray, g->mov_key);
-	if (g->rot_key)
-	{
-		if (g->rot_key == LEFT_ARROW)
-			key_rotate(&g->ray, -ROT_SPEED);
-		if (g->rot_key == RIGTH_ARROW)
-			key_rotate(&g->ray, ROT_SPEED);
-	}
+	int mask = g->key_mask;
+
+	if (mask & KEY_W)
+		move(&g->ray, g, W);
+	if (mask & KEY_S)
+		move(&g->ray, g, S);
+	if (mask & KEY_A)
+		move(&g->ray, g, A);
+	if (mask & KEY_D)
+		move(&g->ray, g, D);
+	if (mask & KEY_LEFT)
+		key_rotate(&g->ray, -ROT_SPEED);
+	if (mask & KEY_RIGHT)
+		key_rotate(&g->ray, ROT_SPEED);
 }
+
 
 int	handle_key_press(int keycode, t_game *g)
 {
+	int mask = 0;
+
 	if (keycode == ESC)
-		close_window(g);
-	if (keycode == W || keycode == A
-		|| keycode == S || keycode == D)
-		g->mov_key = keycode;
-	if (keycode == LEFT_ARROW || keycode == RIGTH_ARROW)
-		g->rot_key = keycode;
-	return (0);
+		return (close_window(g), 0);
+	mask |= (keycode == W) * KEY_W;
+	mask |= (keycode == S) * KEY_S;
+	mask |= (keycode == A) * KEY_A;
+	mask |= (keycode == D) * KEY_D;
+	mask |= (keycode == LEFT_ARROW) * KEY_LEFT;
+	mask |= (keycode == RIGHT_ARROW) * KEY_RIGHT;
+	g->key_mask |= mask;
+	return 0;
 }
+
 
 int	handle_key_release(int keycode, t_game *g)
 {
-	if (keycode == W || keycode == A
-		|| keycode == S || keycode == D)
-		g->mov_key = 0;
-	if (keycode == LEFT_ARROW || keycode == RIGTH_ARROW)
-		g->rot_key = 0;
-	return (0);
+	int mask = 0;
+
+	mask |= (keycode == W) * KEY_W;
+	mask |= (keycode == S) * KEY_S;
+	mask |= (keycode == A) * KEY_A;
+	mask |= (keycode == D) * KEY_D;
+	mask |= (keycode == LEFT_ARROW) * KEY_LEFT;
+	mask |= (keycode == RIGHT_ARROW) * KEY_RIGHT;
+	g->key_mask &= ~mask;
+	return 0;
 }
+
