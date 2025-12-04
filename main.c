@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:04:44 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:47:28 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	close_window(t_game *g)
 	return (0);
 }
 
-void draw_fps(t_game *g)
+void	draw_fps(t_game *g)
 {
 	char buffer[32];
 	int fps_int;

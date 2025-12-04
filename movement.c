@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:43:16 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:54:26 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ void	set_dir(t_ray *ray, double *dir_x, double *dir_y, int keycode)
 
 void	move(t_ray *ray, t_game *g, int keycode)
 {
-	double dir_x = 0;
-	double dir_y = 0;
-	double new_x;
-	double new_y;
+	double	dir_x;
+	double	dir_y;
+	double	new_x;
+	double	new_y;
 
+	dir_x = 0;
+	dir_y = 0;
 	set_dir(ray, &dir_x, &dir_y, keycode);
 	new_x = ray->p_pos.x + dir_x * ray->move_speed;
 	new_y = ray->p_pos.y + dir_y * ray->move_speed;
@@ -74,8 +76,9 @@ void	key_rotate(t_ray *ray, double rot)
 
 void	check_for_movement(t_game *g)
 {
-	int mask = g->key_mask;
+	int	mask;
 
+	mask = g->key_mask;
 	if (mask & KEY_W)
 		move(&g->ray, g, W);
 	if (mask & KEY_S)
@@ -88,37 +91,5 @@ void	check_for_movement(t_game *g)
 		key_rotate(&g->ray, -ROT_SPEED);
 	if (mask & KEY_RIGHT)
 		key_rotate(&g->ray, ROT_SPEED);
-}
-
-
-int	handle_key_press(int keycode, t_game *g)
-{
-	int mask = 0;
-
-	if (keycode == ESC)
-		return (close_window(g), 0);
-	mask |= (keycode == W) * KEY_W;
-	mask |= (keycode == S) * KEY_S;
-	mask |= (keycode == A) * KEY_A;
-	mask |= (keycode == D) * KEY_D;
-	mask |= (keycode == LEFT_ARROW) * KEY_LEFT;
-	mask |= (keycode == RIGHT_ARROW) * KEY_RIGHT;
-	g->key_mask |= mask;
-	return 0;
-}
-
-
-int	handle_key_release(int keycode, t_game *g)
-{
-	int mask = 0;
-
-	mask |= (keycode == W) * KEY_W;
-	mask |= (keycode == S) * KEY_S;
-	mask |= (keycode == A) * KEY_A;
-	mask |= (keycode == D) * KEY_D;
-	mask |= (keycode == LEFT_ARROW) * KEY_LEFT;
-	mask |= (keycode == RIGHT_ARROW) * KEY_RIGHT;
-	g->key_mask &= ~mask;
-	return 0;
 }
 

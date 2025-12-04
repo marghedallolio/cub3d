@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:15:43 by mdalloli          #+#    #+#             */
-/*   Updated: 2025/12/04 14:52:24 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:45:28 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,12 @@ bool	parse(t_game *g, t_info_map *info, char **av)
 	return (true);
 }
 
-double get_time_in_seconds(void)
+double	get_time_in_seconds(void)
 {
 	struct timeval tv;
+
 	gettimeofday(&tv, NULL);
-	return tv.tv_sec + tv.tv_usec / 1e6;
+	return (tv.tv_sec + tv.tv_usec / 1e6);
 }
 
 /* Inizializza tutte le componenti del gioco: player, mappa, parsing e MiniLibX.
