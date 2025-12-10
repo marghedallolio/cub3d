@@ -6,11 +6,11 @@
 #    By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/29 14:09:53 by mdalloli          #+#    #+#              #
-#    Updated: 2025/12/04 15:40:01 by mdalloli         ###   ########.fr        #
+#    Updated: 2025/12/04 16:41:28 by mdalloli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cube3d
+NAME = cub3d
 CC = cc
 CFLAGS = -Werror -Wextra -Wall -g
 
@@ -19,13 +19,14 @@ MLX = $(MLXDIR)/libmlx.a
 LIBFT = libft/libft.a
 MLXFLAGS = -Lmlx -lXext -lm -lmlx -lX11
 
-SRC = main.c movement.c dda.c
+SRC = main.c dda.c free_close.c
 PARSING = extraction_file_info_utils.c extraction_file_info.c file_reading_and_parsing.c \
 		parse_map_utils.c parse_map.c pre_parsing_file.c parse_texture.c utils.c
 INITS = init_game.c init_vectors.c
 DRAWING = drawing.c drawing_utils.c
+MOVEMENT = movement.c handle_keys.c
 
-SRC += $(addprefix parsing/, $(PARSING)) $(addprefix inits/, $(INITS)) $(addprefix drawing/, $(DRAWING))
+SRC += $(addprefix parsing/, $(PARSING)) $(addprefix inits/, $(INITS)) $(addprefix drawing/, $(DRAWING)) $(addprefix movement/, $(MOVEMENT)) 
 
 OBJ = $(SRC:.c=.o)
 

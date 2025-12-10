@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francema <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:01:05 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 16:15:51 by francema         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:38:25 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	format_fps_string(char *buffer, double fps)
 	fps_int = (int)fps;
 	fps_dec = (int)((fps - fps_int) * 10.0);
 	index = 0;
-	memcpy(buffer + index, "FPS: ", 5);
+	ft_memcpy(buffer + index, "FPS: ", 5);
 	index += 5;
 	if (fps_int == 0)
 		buffer[index++] = '0';
@@ -38,7 +38,7 @@ static void	format_fps_string(char *buffer, double fps)
 		while (i-- > 0)
 			buffer[index++] = '0' + temp[i];
 	}
-	memcpy(buffer + index, ".0\0", 3);
+	ft_memcpy(buffer + index, ".0\0", 3);
 }
 
 void	draw_fps(t_game *g)
@@ -69,7 +69,6 @@ void	generate_frame(t_game *g)
 
 int	game(t_game *g)
 {
-	int				x;
 	static double	now;
 	static double	delta;
 

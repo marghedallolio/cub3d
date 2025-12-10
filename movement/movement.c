@@ -6,7 +6,7 @@
 /*   By: mdalloli <mdalloli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 16:59:01 by francema          #+#    #+#             */
-/*   Updated: 2025/12/04 15:58:01 by mdalloli         ###   ########.fr       */
+/*   Updated: 2025/12/04 16:46:38 by mdalloli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,16 @@ void	key_rotate(t_ray *ray, double rot)
 
 void	check_for_movement(t_game *g)
 {
-	int	mask;
-
-	if (mask & (1 << 0))
+	if (g->key_mask & (1 << 0))
 		move(&g->ray, g, W);
-	if (mask & (1 << 1))
+	if (g->key_mask & (1 << 1))
 		move(&g->ray, g, S);
-	if (mask & (1 << 2))
+	if (g->key_mask & (1 << 2))
 		move(&g->ray, g, A);
-	if (mask & (1 << 3))
+	if (g->key_mask & (1 << 3))
 		move(&g->ray, g, D);
-	if (mask & (1 << 4))
+	if (g->key_mask & (1 << 4))
 		key_rotate(&g->ray, -ROT_SPEED);
-	if (mask & (1 << 5))
+	if (g->key_mask & (1 << 5))
 		key_rotate(&g->ray, ROT_SPEED);
 }
